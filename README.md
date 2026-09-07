@@ -1,29 +1,34 @@
 # Prompts
 
-Ready-to-paste prompts for weak local LLMs. Copy the block between `=== PROMPT START ===` and `=== PROMPT END ===`, then append one production class.
+Ready-to-paste prompts for weak local LLMs. Each prompt set is a folder: description (for you), `prompt.md` (for the model), and usage notes.
 
-Prefer the English prompt when the model struggles with Polish.
+In IntelliJ + ProxyAI attach **only** `prompt.md` plus the Java class. See the usage file in each set.
+
+Prefer the English set when the model struggles with Polish.
 
 ## Layout
 
-One directory per topic, one subdirectory per prompt set. Add more later without mixing files:
+One directory per topic, one subdirectory per prompt set:
 
 ```
 spring-boot-4/
-  tests/          ← unit + slice tests (this set)
+  tests/
+    prompt.en/     ← English: description.md, prompt.md, usage.md
+    prompt/        ← Polish: opis.md, prompt.md, jak-uzywac.md
 ```
+
+Add more sets later as sibling folders (`spring-boot-4/foo/`, `quarkus/tests/`, …).
 
 ## Contents
 
-| File | Language | Purpose |
+| Path | Language | Attach to the model |
 |---|---|---|
-| [spring-boot-4/tests/prompt.en.md](spring-boot-4/tests/prompt.en.md) | English | Spring Boot 4 unit + slice test prompt |
-| [spring-boot-4/tests/prompt.md](spring-boot-4/tests/prompt.md) | Polish | Same rules, Polish instructions |
-
-Each file has two parts:
-
-1. A cheatsheet for you (what to focus on).
-2. A literal prompt for the model, with four few-shot examples.
+| [spring-boot-4/tests/prompt.en/prompt.md](spring-boot-4/tests/prompt.en/prompt.md) | English | yes |
+| [spring-boot-4/tests/prompt.en/description.md](spring-boot-4/tests/prompt.en/description.md) | English | no |
+| [spring-boot-4/tests/prompt.en/usage.md](spring-boot-4/tests/prompt.en/usage.md) | English | no |
+| [spring-boot-4/tests/prompt/prompt.md](spring-boot-4/tests/prompt/prompt.md) | Polish | yes |
+| [spring-boot-4/tests/prompt/opis.md](spring-boot-4/tests/prompt/opis.md) | Polish | no |
+| [spring-boot-4/tests/prompt/jak-uzywac.md](spring-boot-4/tests/prompt/jak-uzywac.md) | Polish | no |
 
 ## Spring Boot 4 tests — scope
 
@@ -43,21 +48,13 @@ Boot 4 hard rules baked into the prompt:
 - JUnit Jupiter + AssertJ + Mockito
 - method names: `should{Outcome}When{Condition}`
 
-## How to use
+## How to use (short)
 
-1. Open the English or Polish file.
-2. Copy `=== PROMPT START ===` … `=== PROMPT END ===` into the local model as the system / first message.
-3. Append **one class and one kind** per request:
+Full IntelliJ + ProxyAI steps: [spring-boot-4/tests/prompt.en/usage.md](spring-boot-4/tests/prompt.en/usage.md).
 
-```
-KIND: UNIT_SERVICE
-PACKAGE: com.example.orders
-CLASS UNDER TEST:
-<paste the class>
-
-DEPENDENCIES:
-<paste interfaces, records, exceptions>
-```
+1. Put `prompt.md` inside the IntelliJ project (copy the folder, or add this repo as a module).
+2. In ProxyAI chat: `@Files` → `prompt.md`, then `@Files` → the Java class (and its DTOs / exceptions).
+3. Send `KIND: UNIT_SERVICE` (or `SLICE_WEB` / `SLICE_JPA` / `SLICE_JSON`).
 
 Do not dump a whole module into one request. Weak models invent types when dependencies are missing.
 
@@ -65,30 +62,35 @@ Do not dump a whole module into one request. Weak models invent types when depen
 
 # Prompty
 
-Gotowe prompty do wklejenia w słabe, lokalne modele. Skopiuj blok między `=== PROMPT START ===` a `=== PROMPT END ===`, potem doklej jedną klasę produkcyjną.
+Gotowe prompty do słabych, lokalnych modeli. Każdy zestaw to katalog: opis (dla Ciebie), `prompt.md` (dla modelu) i instrukcja użycia.
 
-Gdy model gorzej radzi sobie z polskim, użyj wersji angielskiej.
+W IntelliJ + ProxyAI podpinaj **tylko** `prompt.md` oraz klasę Javy. Szczegóły są w pliku użycia w zestawie.
+
+Gdy model gorzej radzi sobie z polskim, użyj zestawu angielskiego.
 
 ## Układ
 
-Jeden katalog na temat, jeden podkatalog na zestaw promptów. Kolejne zestawy dokładaj obok, bez mieszania plików:
+Jeden katalog na temat, jeden podkatalog na zestaw promptów:
 
 ```
 spring-boot-4/
-  tests/          ← testy jednostkowe i slice (ten zestaw)
+  tests/
+    prompt.en/     ← angielski: description.md, prompt.md, usage.md
+    prompt/        ← polski: opis.md, prompt.md, jak-uzywac.md
 ```
+
+Kolejne zestawy dokładaj obok (`spring-boot-4/foo/`, `quarkus/tests/`, …).
 
 ## Zawartość
 
-| Plik | Język | Cel |
+| Ścieżka | Język | Podawać modelowi |
 |---|---|---|
-| [spring-boot-4/tests/prompt.en.md](spring-boot-4/tests/prompt.en.md) | angielski | Prompt testów jednostkowych i slice, Spring Boot 4 |
-| [spring-boot-4/tests/prompt.md](spring-boot-4/tests/prompt.md) | polski | Te same zasady, instrukcje po polsku |
-
-Każdy plik ma dwie części:
-
-1. Ściągawkę dla Ciebie (na czym się skupiać).
-2. Dosłowny prompt dla modelu, z czterema przykładami few-shot.
+| [spring-boot-4/tests/prompt.en/prompt.md](spring-boot-4/tests/prompt.en/prompt.md) | angielski | tak |
+| [spring-boot-4/tests/prompt.en/description.md](spring-boot-4/tests/prompt.en/description.md) | angielski | nie |
+| [spring-boot-4/tests/prompt.en/usage.md](spring-boot-4/tests/prompt.en/usage.md) | angielski | nie |
+| [spring-boot-4/tests/prompt/prompt.md](spring-boot-4/tests/prompt/prompt.md) | polski | tak |
+| [spring-boot-4/tests/prompt/opis.md](spring-boot-4/tests/prompt/opis.md) | polski | nie |
+| [spring-boot-4/tests/prompt/jak-uzywac.md](spring-boot-4/tests/prompt/jak-uzywac.md) | polski | nie |
 
 ## Testy Spring Boot 4 — zakres
 
@@ -108,20 +110,12 @@ Twarde zasady Boot 4 wplecione w prompt:
 - JUnit Jupiter + AssertJ + Mockito
 - nazwy metod: `should{Outcome}When{Condition}`
 
-## Jak używać
+## Jak używać (skrót)
 
-1. Otwórz plik angielski albo polski.
-2. Skopiuj `=== PROMPT START ===` … `=== PROMPT END ===` do lokalnego modelu jako system / pierwsze przesłanie.
-3. Doklej **jedną klasę i jeden typ** na request:
+Pełne kroki IntelliJ + ProxyAI: [spring-boot-4/tests/prompt/jak-uzywac.md](spring-boot-4/tests/prompt/jak-uzywac.md).
 
-```
-TYP: UNIT_SERVICE
-PAKIET: com.example.orders
-KLASA POD TESTEM:
-<wklej klasę>
-
-ZALEŻNOŚCI:
-<wklej interfejsy, rekordy, wyjątki>
-```
+1. Włóż `prompt.md` do projektu IntelliJ (skopiuj katalog albo dodaj to repo jako moduł).
+2. Na czacie ProxyAI: `@Files` → `prompt.md`, potem `@Files` → klasa Javy (oraz DTO / wyjątki).
+3. Wyślij `TYP: UNIT_SERVICE` (albo `SLICE_WEB` / `SLICE_JPA` / `SLICE_JSON`).
 
 Nie wrzucaj całego modułu w jeden request. Słaby model zgaduje typy, gdy brakuje zależności.
