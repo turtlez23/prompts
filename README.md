@@ -4,12 +4,21 @@ Ready-to-paste prompts for weak local LLMs. Copy the block between `=== PROMPT S
 
 Prefer the English prompt when the model struggles with Polish.
 
+## Layout
+
+One directory per topic, one subdirectory per prompt set. Add more later without mixing files:
+
+```
+spring-boot-4/
+  tests/          ← unit + slice tests (this set)
+```
+
 ## Contents
 
 | File | Language | Purpose |
 |---|---|---|
-| [docs/spring-boot-4-test-prompt.en.md](docs/spring-boot-4-test-prompt.en.md) | English | Spring Boot 4 unit + slice test prompt |
-| [docs/spring-boot-4-test-prompt.md](docs/spring-boot-4-test-prompt.md) | Polish | Same rules, Polish instructions |
+| [spring-boot-4/tests/prompt.en.md](spring-boot-4/tests/prompt.en.md) | English | Spring Boot 4 unit + slice test prompt |
+| [spring-boot-4/tests/prompt.md](spring-boot-4/tests/prompt.md) | Polish | Same rules, Polish instructions |
 
 Each file has two parts:
 
@@ -60,12 +69,21 @@ Gotowe prompty do wklejenia w słabe, lokalne modele. Skopiuj blok między `=== 
 
 Gdy model gorzej radzi sobie z polskim, użyj wersji angielskiej.
 
+## Układ
+
+Jeden katalog na temat, jeden podkatalog na zestaw promptów. Kolejne zestawy dokładaj obok, bez mieszania plików:
+
+```
+spring-boot-4/
+  tests/          ← testy jednostkowe i slice (ten zestaw)
+```
+
 ## Zawartość
 
 | Plik | Język | Cel |
 |---|---|---|
-| [docs/spring-boot-4-test-prompt.en.md](docs/spring-boot-4-test-prompt.en.md) | angielski | Prompt testów jednostkowych i slice, Spring Boot 4 |
-| [docs/spring-boot-4-test-prompt.md](docs/spring-boot-4-test-prompt.md) | polski | Te same zasady, instrukcje po polsku |
+| [spring-boot-4/tests/prompt.en.md](spring-boot-4/tests/prompt.en.md) | angielski | Prompt testów jednostkowych i slice, Spring Boot 4 |
+| [spring-boot-4/tests/prompt.md](spring-boot-4/tests/prompt.md) | polski | Te same zasady, instrukcje po polsku |
 
 Każdy plik ma dwie części:
 
